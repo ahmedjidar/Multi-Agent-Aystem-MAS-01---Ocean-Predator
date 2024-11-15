@@ -6,6 +6,7 @@ import java.util.Random;
 public class Ocean {
     public Fish[] fishes;
     public ArrayList<AvoidZone> obstacles;
+    public Shark shark;
     protected Random generator;
     protected double width;
     protected double height;
@@ -18,6 +19,19 @@ public class Ocean {
         fishes = new Fish[fishCount];
         for (int i = 0; i < fishCount; i++) {
             fishes[i] = new Fish(generator.nextDouble() * width, generator.nextDouble() * height, generator.nextDouble() * 2 * Math.PI);
+        }
+        shark = new Shark(width / 2, height / 2, generator.nextDouble() * 2 * Math.PI);
+    }
+
+    protected void updateShark() {
+        shark.update(fishes, obstacles, width, height);
+    }
+
+    protected void updateFishes() {
+        for (int i = 0; i < fishes.length; i++) {
+            if (fishes[i] != null) {
+                fishes[i].update(fishes, obstacles, width, height);
+            }
         }
     }
 
@@ -32,15 +46,10 @@ public class Ocean {
         obstacles.removeIf(AvoidZone::isExpired);
     }
 
-    protected void updateFishes() {
-        for (Fish fish : fishes) {
-            fish.update(fishes, obstacles, width, height);
-        }
-    }
-
     public void updateOcean() {
         updateObstacles();
         updateFishes();
+        updateShark();
     }
 }
 

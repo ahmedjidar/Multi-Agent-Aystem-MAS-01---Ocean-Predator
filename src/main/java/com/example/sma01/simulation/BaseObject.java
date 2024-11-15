@@ -16,6 +16,9 @@ public class BaseObject {
     }
 
     public double squaredDistanceTo(BaseObject other) {
+        if (other == null) {
+            return Double.MAX_VALUE; // A large value ensures it's not mistakenly selected
+        }
         return (other.posX - posX) * (other.posX - posX) + (other.posY - posY) * (other.posY - posY);
     }
 }

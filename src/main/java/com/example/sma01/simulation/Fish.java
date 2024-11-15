@@ -58,7 +58,7 @@ public class Fish extends BaseObject {
 
     protected boolean avoidOtherFish(Fish[] fishes) {
         for (Fish fish : fishes) {
-            if (fish != this && squaredDistanceTo(fish) < MIN_SQUARED_DISTANCE) {
+            if (fish != null && fish != this && squaredDistanceTo(fish) < MIN_SQUARED_DISTANCE) {
                 double distance = distanceTo(fish);
                 double diffX = (posX - fish.posX) / distance;
                 double diffY = (posY - fish.posY) / distance;

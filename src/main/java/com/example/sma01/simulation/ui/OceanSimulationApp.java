@@ -10,7 +10,7 @@ public class OceanSimulationApp extends Application {
     public void start(Stage primaryStage) {
         OceanPane oceanPane = new OceanPane();
         StackPane root = new StackPane(oceanPane);
-        Scene scene = new Scene(root, 600, 400);
+        Scene scene = new Scene(root, 1080, 720);
 
         primaryStage.setTitle("Fish Simulation - JavaFX");
         primaryStage.setScene(scene);
